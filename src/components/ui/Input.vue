@@ -1,9 +1,14 @@
 <template>
-  <div class="input" :class="{ active: isActive }">
-    <p v-if="placeholder" class="input__placeholder">{{ placeholder }}</p>
-    <input ref="inputRef" class="input__input" placeholder="" type="text" :value="value" @input="onInput"
-      @focus="focused = true" @blur="focused = false" />
-    <div class="input__trigger" @click="inputRef.focus()" />
+  <div class="input" :class="{ active: isActive, warning }">
+    <div class="input__container">
+      <p v-if="placeholder" class="input__container__placeholder">{{ placeholder }}</p>
+
+      <input ref="inputRef" class="input__container__input" placeholder="" type="text" :value="value" @input="onInput"
+        @focus="focused = true" @blur="focused = false" />
+      <div class="input__container__trigger" @click="inputRef.focus()" />
+    </div>
+
+    <p v-if="warning" class="input__warning">{{ warning }}</p>
   </div>
 </template>
 
@@ -19,13 +24,17 @@ const props = defineProps({
     type: String,
     default: null
   },
+  warning: {
+    type: String,
+    default: null
+  },
   number: {
     type: Boolean,
     default: false
   }
 })
 
-const emit = defineEmits(["update:value"])
+const emit = defineEmits(["update:value", "update:warning"])
 
 const inputRef = ref(null)
 const focused = ref(false)
@@ -37,8 +46,9 @@ function validateNumbers(value) {
 }
 
 const onInput = (event) => {
-  console.log(props.value)
   const inputValue = event.target.value
+
+  emit("update:warning", null)
 
   if (props.number) {
     const validatedInputValue = validateNumbers(inputValue)
@@ -52,58 +62,79 @@ const onInput = (event) => {
 
 <style scoped lang='scss'>
 .input {
-  position: relative;
-  flex: 1 1 auto;
-  height: 30px;
-  background: var(--text);
-  border-radius: 2px;
+  &__container {
+    position: relative;
+    height: 30px;
+    background: var(--text);
+    border-radius: 2px;
 
-  &__placeholder {
-    position: absolute;
-    left: 6px;
-    top: 50%;
-    z-index: 1;
-    transform: translateY(-50%);
-    padding: 0 2px;
-    color: rgb(92, 92, 92);
-    font-size: 13px;
-    line-height: 1em;
-    font-weight: 600;
-    cursor: text;
-    transition: 0.2s;
+    &__placeholder {
+      position: absolute;
+      left: 6px;
+      top: 50%;
+      z-index: 1;
+      transform: translateY(-50%);
+      padding: 0 2px;
+      color: rgb(92, 92, 92);
+      font-size: 13px;
+      line-height: 1em;
+      font-weight: 600;
+      cursor: text;
+      transition: 0.2s;
+    }
+
+    &__input {
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      z-index: 2;
+      width: 100%;
+      height: unset;
+      padding: 0 6px;
+      background: transparent;
+      border: 0px;
+      outline: 0px;
+      font-weight: 600;
+      caret-color: var(--primary);
+    }
+
+    &__trigger {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      cursor: text;
+    }
   }
 
-  &__input {
-    position: absolute;
-    left: 0;
-    bottom: 2px;
-    z-index: 2;
-    width: 100%;
-    height: unset;
-    padding: 0 6px;
-    background: transparent;
-    border: 0px;
-    outline: 0px;
-    font-weight: 600;
-    caret-color: var(--primary);
-  }
-
-  &__trigger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    cursor: text;
+  &__warning {
+    opacity: 0.9;
+    color: var(--error);
+    font-size: 12px;
   }
 
   &.active {
-    &>.input {
-      &__placeholder {
-        top: 2px;
-        transform: translateY(0);
-        font-size: 10px;
+    & .input {
+      &__container {
+        &__placeholder {
+          top: 2px;
+          transform: translateY(0);
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  &.warning {
+    & .input {
+      &__container {
+        border: 2px solid var(--error);
+
+        &__placeholder {
+          color: var(--error);
+        }
       }
     }
   }
