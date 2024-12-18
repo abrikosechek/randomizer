@@ -55,6 +55,8 @@ const resultsAmountWarning = ref(null)
 const generatedList = ref([])
 const generatedListAverage = ref(null)
 
+
+
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -78,6 +80,9 @@ const generate = () => {
   } else if (Number(resultsAmount.value) < 1) {
     returnError = true
     resultsAmountWarning.value = "value must be higher"
+  } else if (Number(resultsAmount.value) > 1000) {
+    returnError = true
+    resultsAmountWarning.value = "max value is 1000"
   }
 
   if (returnError) return

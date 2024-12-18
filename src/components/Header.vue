@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <router-link to="/" class="header__logo">
-      Randomizer<span>Vue</span>
+      Randomka
     </router-link>
     <a href="" class="header__github">
       <IconGithubWhite />
@@ -21,6 +21,10 @@ const links = [
   {
     text: "Number",
     path: "number"
+  },
+  {
+    text: "Dice",
+    path: "dice"
   }
 ]
 </script>
@@ -62,6 +66,7 @@ nav {
   gap: 4px;
   width: 100%;
   height: 30px;
+  padding: 3px 8px;
   background: #252525;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, .05);
 
@@ -71,6 +76,7 @@ nav {
     justify-content: center;
     height: 100%;
     padding: 0 12px;
+    border-radius: 2px;
     text-decoration: none;
     font-weight: 600;
     transition: 0.2s;
@@ -83,6 +89,7 @@ nav {
 
     &.router-link-active {
       background: rgba(255, 255, 255, 0.1);
+      cursor: default;
     }
   }
 }

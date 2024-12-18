@@ -1,0 +1,1 @@
+export { default as default } from "./Dice.vue"
