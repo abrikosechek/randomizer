@@ -80,6 +80,7 @@ nav {
     text-decoration: none;
     font-weight: 600;
     transition: 0.2s;
+    user-select: none;
 
     &:not(.router-link-active) {
       &:hover {
