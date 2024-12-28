@@ -3,7 +3,7 @@
     <router-link to="/" class="header__logo">
       Randomka
     </router-link>
-    <a href="" class="header__github">
+    <a href="https://github.com/abrikosechek/randomizer" target="_blank" class="header__github">
       <IconGithubWhite />
     </a>
   </header>
