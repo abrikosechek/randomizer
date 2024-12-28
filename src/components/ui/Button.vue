@@ -28,6 +28,7 @@ button {
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s;
+  user-select: none;
 
   &:not(.disabled) {
     &:hover {

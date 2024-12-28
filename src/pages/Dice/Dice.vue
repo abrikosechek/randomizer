@@ -65,7 +65,7 @@ const initScene = () => {
 
   // cannon-es
   world = new CANNON.World({
-    gravity: new CANNON.Vec3(0, -1.91, 0)
+    gravity: new CANNON.Vec3(0, -2.91, 0)
   })
 }
 
@@ -155,7 +155,7 @@ const createCube = () => {
   const geometrySize = 4
 
   // three object
-  let geometry = new RoundedBoxGeometry(geometrySize, geometrySize, geometrySize, 4, 1);
+  let geometry = new RoundedBoxGeometry(geometrySize, geometrySize, geometrySize, 6, 0.4);
 
   const textureLoader = new THREE.TextureLoader()
   const materials = ['1', "2", "3", "4", "5", "6"]
@@ -172,12 +172,12 @@ const createCube = () => {
   cubeObject.body = new CANNON.Body({
     mass: 1,
     shape: new CANNON.Box(new CANNON.Vec3(geometrySize / 2, geometrySize / 2, geometrySize / 2)),
-    position: new CANNON.Vec3(10, 6, 0)
+    position: new CANNON.Vec3(25, 12, 0)
   })
-  const moveImpulse = new CANNON.Vec3(-8, -4, getRandomNumber(-3, 2))
+  const moveImpulse = new CANNON.Vec3(-14, -2, getRandomNumber(-3, 2))
   cubeObject.body.applyImpulse(moveImpulse)
 
-  const angularVelocity = new CANNON.Vec3(getRandomNumber(-3, 2), Math.PI * getRandomNumber(-3, 3), getRandomNumber(-3, 2)); // Rotating around Y-axis
+  const angularVelocity = new CANNON.Vec3(getRandomNumber(-4, 3), Math.PI * getRandomNumber(-3, 3), getRandomNumber(-3, 2)); // Rotating around Y-axis
   cubeObject.body.angularVelocity.copy(angularVelocity);
 
   world.addBody(cubeObject.body)
