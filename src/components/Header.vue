@@ -47,6 +47,7 @@ const links = [
     font-size: 28px;
     font-weight: 600;
     text-decoration: none;
+    user-select: none;
 
     &>span {
       color: #41B883;
