@@ -4,9 +4,14 @@
       <canvas ref="canvasComponent" />
     </div>
 
-    <Button @click="createCube">
-      Throw
-    </Button>
+    <div class="page__buttons">
+      <Button @click="resetScene">
+        Reset
+      </Button>
+      <Button @click="createCube">
+        Throw
+      </Button>
+    </div>
   </div>
 </template>
 
@@ -34,7 +39,7 @@ let ground0, groundBody0
 let ground1, groundBody1
 let ground2, groundBody2
 let ground3, groundBody3
-const cubes = []
+let cubes = []
 
 const getRandomNumber = (min, max) => {
   return Math.random() * (max - min) + min;
@@ -227,9 +232,13 @@ const renderScene = () => {
   renderer.setAnimationLoop(animate)
 }
 
-const rerenderScene = () => {
-  renderer.clear();
-  renderer.render(scene, camera);
+const resetScene = () => {
+  cubes.forEach((item) => {
+    scene.remove(item.mesh)
+    world.removeBody(item.body)
+  })
+
+  cubes = []
 }
 </script>
 
@@ -242,6 +251,12 @@ const rerenderScene = () => {
   width: 100%;
   max-width: 350px;
   margin: 0 auto;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
 
 .card {
