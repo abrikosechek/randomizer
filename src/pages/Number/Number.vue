@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-
     <div class="card card-params">
       <h1 class="card__title">
         Random number
@@ -22,15 +21,22 @@
     </div>
 
     <div v-if="generatedList.length" class="card card-results">
-      <h2 class="card__title">
-        Results
-        <span class="card__title__description">(avg: {{ generatedListAverage }})</span>
-      </h2>
+      <div class="card-results__header">
+        <h2 class="card__title">
+          Results
+          <span class="card__title__description">(avg: {{ generatedListAverage }})</span>
+        </h2>
+
+        <button class="card-results__header__button" @click="copyResults">
+          <IconCopy class="card-results__header__button__icon" />
+          <p>copy</p>
+        </button>
+      </div>
 
       <div class="card-results__list">
-        <div v-for="(item, index) in generatedList" :key="index" class="card-results__list__item">
-          <p class="card-results__list__item__text">{{ item }}</p>
-        </div>
+        <p v-for="(item, index) in generatedList" :key="index" class="card-results__list__item">
+          {{ item }}
+        </p>
       </div>
     </div>
   </div>
@@ -39,6 +45,7 @@
 <script setup>
 import { ref } from "vue";
 import { useWarningsStore } from "@/store/warnings"
+import { IconCopy } from "@/assets/icons"
 import Button from "@/components/ui/Button.vue";
 import Input from "@/components/ui/Input.vue";
 
@@ -54,8 +61,6 @@ const resultsAmountWarning = ref(null)
 
 const generatedList = ref([])
 const generatedListAverage = ref(null)
-
-
 
 const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -106,6 +111,24 @@ const generate = () => {
     text: "Successfully generated",
     color: "success",
   })
+}
+
+const copyResults = async () => {
+  const textToCopy = generatedList.value.join(" ")
+
+  try {
+    await navigator.clipboard.writeText(textToCopy)
+    warningsStore.createWarning({
+      text: "Copied results",
+      color: "success",
+    })
+  } catch (err) {
+    warningsStore.createWarning({
+      text: "Failed to copy",
+      color: "success",
+    })
+    console.log("Copying error:\n", err)
+  }
 }
 </script>
 
@@ -160,6 +183,35 @@ const generate = () => {
 }
 
 .card-results {
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+
+    &__button {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      background: transparent;
+      border: 0;
+      border-radius: 4px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, .4);
+      color: var(--text);
+      font-size: 16px;
+      cursor: pointer;
+
+      &__icon {
+        width: 18px;
+        height: 18px;
+        stroke: var(--text);
+      }
+    }
+  }
+
   &__list {
     display: flex;
     gap: 4px;
@@ -167,16 +219,11 @@ const generate = () => {
     width: 100%;
 
     &__item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       padding: 4px 6px;
       border-radius: 3px;
       box-shadow: 0px 0px 6px rgba(0, 0, 0, .4);
-
-      &__text {
-        line-height: 1em;
-      }
+      line-height: 1em;
+      white-space: pre-wrap;
     }
   }
 }
