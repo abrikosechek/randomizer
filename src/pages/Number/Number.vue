@@ -1,8 +1,12 @@
 <template>
   <div class="page">
-    <div class="card card-params">
+    <h1>
+      Random number
+    </h1>
+
+    <div class="card card-params container-glass">
       <h1 class="card__title">
-        Random number
+        Parameters
       </h1>
 
       <Input class="card-params__amount" placeholder="results amount" v-model:value="resultsAmount"
@@ -20,7 +24,7 @@
       </Button>
     </div>
 
-    <div v-if="generatedList.length" class="card card-results">
+    <div v-if="generatedList.length" class="card card-results container-glass">
       <div class="card-results__header">
         <h2 class="card__title">
           Results
@@ -142,26 +146,6 @@ const copyResults = async () => {
   margin: 0 auto;
 }
 
-.card {
-  width: 100%;
-  padding: 14px;
-  background: var(--bg-light);
-  border-radius: 4px;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, .2);
-
-  &__title {
-    margin-bottom: 12px;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1em;
-
-    &__description {
-      opacity: 0.7;
-      font-size: 13px;
-    }
-  }
-}
-
 .card-params {
   &__amount {
     width: 50%;
@@ -193,21 +177,26 @@ const copyResults = async () => {
     &__button {
       flex: 0 0 auto;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 4px;
-      padding: 2px 6px;
+      padding: 1px 4px;
       background: transparent;
       border: 0;
-      border-radius: 4px;
-      box-shadow: 0 0 18px rgba(0, 0, 0, .4);
+      border-radius: 6px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, .2);
       color: var(--text);
+      border: 1px solid var(--primary);
       font-size: 16px;
       cursor: pointer;
 
       &__icon {
         width: 18px;
         height: 18px;
-        stroke: var(--text);
+        stroke: white;
+      }
+
+      & p {
+        line-height: 1em;
       }
     }
   }
@@ -219,11 +208,12 @@ const copyResults = async () => {
     width: 100%;
 
     &__item {
-      padding: 4px 6px;
-      border-radius: 3px;
-      box-shadow: 0px 0px 6px rgba(0, 0, 0, .4);
+      padding: 2px 3px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
       line-height: 1em;
       white-space: pre-wrap;
+      font-weight: 200;
     }
   }
 }

@@ -18,13 +18,13 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 34px;
-  padding: 2px 8px;
+  height: 30px;
+  padding: 2px 15px;
   background: var(--primary);
   border: 0px;
-  border-radius: 2px;
+  border-radius: 8px;
   color: var(--text);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   transition: 0.2s;

@@ -64,9 +64,10 @@ const onInput = (event) => {
 .input {
   &__container {
     position: relative;
-    height: 30px;
-    background: var(--text);
-    border-radius: 2px;
+    height: 32px;
+    background: #FFFFFF20;
+    border: 1px solid #FFFFFF40;
+    border-radius: 5px;
 
     &__placeholder {
       position: absolute;
@@ -75,10 +76,10 @@ const onInput = (event) => {
       z-index: 1;
       transform: translateY(-50%);
       padding: 0 2px;
-      color: rgb(92, 92, 92);
-      font-size: 13px;
+      color: #ffffffec;
+      font-size: 15px;
       line-height: 1em;
-      font-weight: 600;
+      font-weight: 500;
       cursor: text;
       transition: 0.2s;
     }
@@ -95,7 +96,7 @@ const onInput = (event) => {
       border: 0px;
       outline: 0px;
       font-weight: 600;
-      caret-color: var(--primary);
+      color: #FFF;
     }
 
     &__trigger {
@@ -110,18 +111,19 @@ const onInput = (event) => {
   }
 
   &__warning {
-    opacity: 0.9;
     color: var(--error);
-    font-size: 12px;
+    font-size: 13px;
   }
 
   &.active {
     & .input {
       &__container {
         &__placeholder {
-          top: 2px;
+          color: #ffffffd2;
+          top: 1px;
           transform: translateY(0);
-          font-size: 10px;
+          font-size: 11px;
+          font-weight: 300;
         }
       }
     }
@@ -130,7 +132,7 @@ const onInput = (event) => {
   &.warning {
     & .input {
       &__container {
-        border: 2px solid var(--error);
+        border: 1px solid var(--error);
 
         &__placeholder {
           color: var(--error);

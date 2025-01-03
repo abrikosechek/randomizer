@@ -1,4 +1,5 @@
 @use "./modules/colors";
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
 
 * {
   box-sizing: border-box;
@@ -7,17 +8,56 @@
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: sans-serif, Arial, Helvetica;
+  padding: 15px;
+  background: linear-gradient(var(--bg-light), var(--bg-dark));
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  font-family: "Itim", serif, sans-serif, Arial, Helvetica;
+}
+
+button {
+  font-family: "Itim", serif, sans-serif, Arial, Helvetica;
 }
 
 a {
-  color: var(--text);
+  color: white;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 400;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.container-glass {
+  background: #ffffff15;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, .1);
+  backdrop-filter: blur(30px);
+}
+
+
+
+.card {
+  width: 100%;
+  padding: 14px;
+
+  &__title {
+    margin-bottom: 12px;
+    font-size: 25px;
+    font-weight: 42100;
+    line-height: 1em;
+
+    &__description {
+      opacity: 0.7;
+      font-size: 13px;
+    }
+  }
 }

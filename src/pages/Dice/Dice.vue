@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div ref="cardComponent" id="card" class="card">
+    <div ref="cardComponent" id="card" class="card container-glass">
       <canvas ref="canvasComponent" />
     </div>
 
@@ -175,14 +175,14 @@ const createCube = () => {
 
   // cannon object
   cubeObject.body = new CANNON.Body({
-    mass: 1,
+    mass: 12,
     shape: new CANNON.Box(new CANNON.Vec3(geometrySize / 2, geometrySize / 2, geometrySize / 2)),
     position: new CANNON.Vec3(25, 12, 0)
   })
-  const moveImpulse = new CANNON.Vec3(-14, -2, getRandomNumber(-3, 2))
+  const moveImpulse = new CANNON.Vec3(-120, -2, getRandomNumber(-3, 2))
   cubeObject.body.applyImpulse(moveImpulse)
 
-  const angularVelocity = new CANNON.Vec3(getRandomNumber(-4, 3), Math.PI * getRandomNumber(-3, 3), getRandomNumber(-3, 2)); // Rotating around Y-axis
+  const angularVelocity = new CANNON.Vec3(getRandomNumber(-2, 1), Math.PI * getRandomNumber(-3, 2), getRandomNumber(-3, 2)); // Rotating around Y-axis
   cubeObject.body.angularVelocity.copy(angularVelocity);
 
   world.addBody(cubeObject.body)
@@ -261,9 +261,8 @@ const resetScene = () => {
 
 .card {
   width: 100%;
+  padding: 0;
   aspect-ratio: 1/1;
-  background: var(--bg-light);
-  border-radius: 4px;
   overflow: hidden;
 }
 </style>

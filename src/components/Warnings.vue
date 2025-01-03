@@ -41,8 +41,8 @@ const removeWarningById = (id) => {
   padding: 8px 12px;
   opacity: 1;
   background: var(--bg-light);
-  box-shadow: 0 0 8px rgba(0, 0, 0, .4);
-  border-radius: 2px;
+  box-shadow: 0 0 18px rgba(0, 0, 0, .35);
+  border-radius: 6px;
   cursor: pointer;
   transition: left 0.2s, transform 0.5s, opacity 0.5s;
 

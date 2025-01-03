@@ -1,5 +1,6 @@
 <template>
-  <header class="header">
+  <div class="header-space" />
+  <header class="container-glass header">
     <router-link to="/" class="header__logo">
       Randomka
     </router-link>
@@ -7,45 +8,35 @@
       <IconGithubWhite />
     </a>
   </header>
-  <nav class="nav">
-    <router-link v-for="link in links" :key="link.path" :to="link.path">
-      {{ link.text }}
-    </router-link>
-  </nav>
 </template>
 
 <script setup>
 import { IconGithubWhite } from "@/assets/icons"
 
-const links = [
-  {
-    text: "Number",
-    path: "number"
-  },
-  {
-    text: "Dice",
-    path: "dice"
-  }
-]
 </script>
 
 <style scoped lang='scss'>
+.header-space {
+  width: 100%;
+  height: 50px;
+}
+
 .header {
-  position: relative;
+  position: fixed;
+  left: 15px;
+  right: 15px;
+  top: 15px;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   height: 50px;
-  padding: 0 12px;
+  padding: 0 15px;
   background: var(--bg-light);
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, .1);
 
   &__logo {
-    color: var(--primary);
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 400;
     text-decoration: none;
     user-select: none;
 
