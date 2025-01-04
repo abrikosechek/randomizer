@@ -17,7 +17,6 @@ defineProps({
 
 <style scoped lang='scss'>
 .burger-menu {
-
   .line {
     transition: 0.3s;
     transform-origin: center;

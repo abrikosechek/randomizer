@@ -5,6 +5,7 @@
     <div class="layout__nav">
       <Nav />
     </div>
+    
     <main>
       <RouterView />
     </main>

@@ -48,7 +48,7 @@ const menuActive = ref(false)
   left: 15px;
   right: 15px;
   top: 15px;
-  z-index: 1;
+  z-index: 2;
 
   &.active {
     bottom: 15px;
@@ -115,11 +115,12 @@ const menuActive = ref(false)
     text-decoration: none;
     color: #ffffffa4;
     transition: 0.2s;
-    font-size: 20px;
+    font-size: 30px;
     line-height: 1em;
     user-select: none;
 
     &.router-link-active {
+      font-size: 34px;
       color: #FFFFFF;
       cursor: default;
     }
