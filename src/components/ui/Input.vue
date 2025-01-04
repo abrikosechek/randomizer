@@ -4,7 +4,7 @@
       <p v-if="placeholder" class="input__container__placeholder">{{ placeholder }}</p>
 
       <input ref="inputRef" class="input__container__input" placeholder="" type="text" :value="value"
-        :inputmode="numeric" @input="onInput" @focus="focused = true" @blur="focused = false" />
+        :inputmode="inputMode" @input="onInput" @focus="focused = true" @blur="focused = false" />
       <div class="input__container__trigger" @click="inputRef.focus()" />
     </div>
 
