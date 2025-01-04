@@ -29,10 +29,6 @@ defineProps({
       opacity: 0.2;
     }
 
-    &>.top,
-    &>.bottom {
-    }
-
     &>.top {
       transform: translate(0, 30px);
       rotate: 45deg;
