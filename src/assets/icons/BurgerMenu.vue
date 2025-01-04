@@ -19,13 +19,11 @@ defineProps({
 .burger-menu {
 
   .line {
-    transition: 1s;
+    transition: 0.3s;
     transform-origin: center;
   }
 
   &.active {
-
-
     &>.middle {
       x: 50;
       width: 0;
