@@ -24,21 +24,22 @@ defineProps({
 
   &.active {
     &>.middle {
-      x: 50;
+      transform: translateX(40px);
       width: 0;
       opacity: 0.2;
     }
 
     &>.top,
     &>.bottom {
-      y: 45;
     }
 
     &>.top {
+      transform: translate(0, 30px);
       rotate: 45deg;
     }
 
     &>.bottom {
+      transform: translate(0, -30px);
       rotate: -45deg;
     }
   }
