@@ -3,8 +3,8 @@
     <div class="input__container">
       <p v-if="placeholder" class="input__container__placeholder">{{ placeholder }}</p>
 
-      <input ref="inputRef" class="input__container__input" placeholder="" type="text" :value="value" @input="onInput"
-        @focus="focused = true" @blur="focused = false" />
+      <input ref="inputRef" class="input__container__input" placeholder="" type="text" :value="value"
+        :inputmode="numeric" @input="onInput" @focus="focused = true" @blur="focused = false" />
       <div class="input__container__trigger" @click="inputRef.focus()" />
     </div>
 
@@ -39,6 +39,7 @@ const emit = defineEmits(["update:value", "update:warning"])
 const inputRef = ref(null)
 const focused = ref(false)
 
+const inputMode = computed(() => props.number ? "numeric" : "text")
 const isActive = computed(() => focused.value || props.value)
 
 function validateNumbers(value) {
