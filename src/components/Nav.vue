@@ -24,9 +24,11 @@ nav {
     color: #ffffffa4;
     transition: 0.2s;
     font-size: 20px;
+    user-select: none;
 
     &.router-link-active {
       color: #FFFFFF;
+      cursor: default;
     }
 
     &:not(.router-link-active) {

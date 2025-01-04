@@ -1,38 +1,68 @@
 <template>
   <div class="header-space" />
-  <header class="container-glass header">
-    <router-link to="/" class="header__logo">
-      Randomka
-    </router-link>
-    <a href="https://github.com/abrikosechek/randomizer" target="_blank" class="header__github">
-      <IconGithubWhite />
-    </a>
-  </header>
+
+  <div class="header-wrapper container-glass" :class="{ active: menuActive }">
+    <header class="header">
+      <router-link to="/" class="header__logo">
+        Randomka
+      </router-link>
+      <div class="header__buttons">
+
+        <a href="https://github.com/abrikosechek/randomizer" target="_blank" class="header__buttons__github">
+          <IconGithubWhite />
+        </a>
+
+
+        <IconBurgerMenu class="header__buttons__menu" :active="menuActive" @click="menuActive = !menuActive" />
+      </div>
+    </header>
+
+    <nav v-if="menuActive" class="menu">
+      <router-link v-for="link in pages" :key="link.path" :to="link.path">
+        {{ link.text }}
+      </router-link>
+    </nav>
+  </div>
 </template>
 
 <script setup>
-import { IconGithubWhite } from "@/assets/icons"
+import { ref } from "vue";
+import { pages } from "@/consts";
+import { IconGithubWhite, IconBurgerMenu } from "@/assets/icons"
 
+const menuActive = ref(false)
 </script>
 
 <style scoped lang='scss'>
+@use "@/assets/styles/imports/breakpoints" as *;
+
 .header-space {
   width: 100%;
   height: 50px;
 }
 
-.header {
+.header-wrapper {
+  display: grid;
+  grid-template-rows: auto 0px;
   position: fixed;
   left: 15px;
   right: 15px;
   top: 15px;
   z-index: 1;
+
+  &.active {
+    bottom: 15px;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   height: 50px;
   padding: 0 15px;
-  background: var(--bg-light);
 
   &__logo {
     font-size: 28px;
@@ -45,44 +75,69 @@ import { IconGithubWhite } from "@/assets/icons"
     }
   }
 
-  &__github {
-    width: 28px;
-    height: 28px;
+  &__buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+
+    &>* {
+      flex: 0 0 auto;
+    }
+
+    &__menu {
+      display: none;
+      width: 25px;
+      height: 25px;
+      fill: white;
+      cursor: pointer;
+    }
+
+    &__github {
+      width: 28px;
+      height: 28px;
+    }
   }
 }
 
-nav {
+.menu {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  gap: 4px;
+  gap: 8px;
   width: 100%;
-  height: 30px;
-  padding: 3px 8px;
-  background: #252525;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, .05);
+  height: 100%;
+  padding: 15px;
+  overflow: auto;
+  border-top: 1px solid #ffffff30;
 
   &>a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 0 12px;
-    border-radius: 2px;
     text-decoration: none;
-    font-weight: 600;
+    color: #ffffffa4;
     transition: 0.2s;
+    font-size: 20px;
+    line-height: 1em;
     user-select: none;
+
+    &.router-link-active {
+      color: #FFFFFF;
+      cursor: default;
+    }
 
     &:not(.router-link-active) {
       &:hover {
-        background: rgba(255, 255, 255, 0.05);
+        color: #FFFFFF;
       }
     }
+  }
+}
 
-    &.router-link-active {
-      background: rgba(255, 255, 255, 0.1);
-      cursor: default;
+@include breakpoint-tablet {
+  .header {
+    &__buttons {
+      &__menu {
+        display: unset;
+      }
     }
   }
 }

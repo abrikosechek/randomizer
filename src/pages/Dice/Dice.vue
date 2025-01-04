@@ -18,7 +18,7 @@
 <script setup>
 import { ref, onMounted } from "vue"
 import * as THREE from "three"
-import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
+import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js'
 import * as CANNON from "cannon-es"
 import Button from "@/components/ui/Button.vue"
 
@@ -205,6 +205,19 @@ const renderScene = () => {
   // camera.position.y = 0.2;
   // camera.rotation.x = -0.2;
 
+  //
+  ground0.position.copy(groundBody0.position)
+  ground0.quaternion.copy(groundBody0.quaternion)
+  //
+  ground1.position.copy(groundBody1.position)
+  ground1.quaternion.copy(groundBody1.quaternion)
+  //
+  ground2.position.copy(groundBody2.position)
+  ground2.quaternion.copy(groundBody2.quaternion)
+  //
+  ground3.position.copy(groundBody3.position)
+  ground3.quaternion.copy(groundBody3.quaternion)
+
   function animate() {
     world.step(1 / 60)
 
@@ -213,18 +226,6 @@ const renderScene = () => {
       cube.mesh.position.copy(cube.body.position)
       cube.mesh.quaternion.copy(cube.body.quaternion)
     })
-    //
-    ground0.position.copy(groundBody0.position)
-    ground0.quaternion.copy(groundBody0.quaternion)
-    //
-    ground1.position.copy(groundBody1.position)
-    ground1.quaternion.copy(groundBody1.quaternion)
-    //
-    ground2.position.copy(groundBody2.position)
-    ground2.quaternion.copy(groundBody2.quaternion)
-    //
-    ground3.position.copy(groundBody3.position)
-    ground3.quaternion.copy(groundBody3.quaternion)
 
     renderer.render(scene, camera)
   }
