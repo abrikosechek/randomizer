@@ -17,7 +17,7 @@
       </div>
     </header>
 
-    <nav v-if="menuActive" class="menu">
+    <nav class="menu">
       <router-link v-for="link in pages" :key="link.path" :to="link.path" @click="menuActive = false">
         {{ link.text }}
       </router-link>
@@ -43,16 +43,18 @@ const menuActive = ref(false)
 
 .header-wrapper {
   display: grid;
-  grid-template-rows: auto 0px;
+  grid-template-rows: auto 1fr;
   position: fixed;
   left: 15px;
   right: 15px;
   top: 15px;
   z-index: 2;
+  height: 50px;
+  overflow: hidden;
+  transition: 0.3s ease-out;
 
   &.active {
-    bottom: 15px;
-    grid-template-rows: auto 1fr;
+    height: calc(100dvh - 15px*2)
   }
 }
 
