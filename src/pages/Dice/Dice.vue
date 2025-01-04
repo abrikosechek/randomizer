@@ -218,6 +218,8 @@ const renderScene = () => {
   ground3.position.copy(groundBody3.position)
   ground3.quaternion.copy(groundBody3.quaternion)
 
+  renderer.setAnimationLoop(animate)
+
   function animate() {
     world.step(1 / 60)
 
@@ -229,8 +231,6 @@ const renderScene = () => {
 
     renderer.render(scene, camera)
   }
-
-  renderer.setAnimationLoop(animate)
 }
 
 const resetScene = () => {
