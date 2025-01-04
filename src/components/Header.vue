@@ -18,7 +18,7 @@
     </header>
 
     <nav v-if="menuActive" class="menu">
-      <router-link v-for="link in pages" :key="link.path" :to="link.path">
+      <router-link v-for="link in pages" :key="link.path" :to="link.path" @click="menuActive = false">
         {{ link.text }}
       </router-link>
     </nav>
