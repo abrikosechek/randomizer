@@ -62,6 +62,8 @@ const onInput = (event) => {
 </script>
 
 <style scoped lang='scss'>
+$transition-duration: 200ms;
+
 .input {
   &__container {
     position: relative;
@@ -82,7 +84,9 @@ const onInput = (event) => {
       line-height: 1em;
       font-weight: 500;
       cursor: text;
-      transition: 0.2s;
+      transition:
+        top $transition-duration,
+        transform $transition-duration;
     }
 
     &__input {
