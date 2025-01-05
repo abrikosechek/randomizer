@@ -16,26 +16,45 @@ defineProps({
 </script>
 
 <style scoped lang='scss'>
+$transition-duration: 200ms;
+
 .burger-menu {
-  .line {
-    transition: 0.3s;
+  &>.line {
     transform-origin: center;
   }
 
+  &>.top,
+  &>.bottom {
+    transition:
+      y $transition-duration ease-in $transition-duration,
+      rotate $transition-duration ease-in;
+  }
+
+  &>.middle {
+    transition:
+      opacity 0ms $transition-duration;
+  }
+
   &.active {
+
+    &>.top,
+    &>.bottom {
+      transition:
+        y $transition-duration ease-in,
+        rotate $transition-duration ease-in $transition-duration;
+    }
+
     &>.middle {
-      transform: translateX(40px);
-      width: 0;
-      opacity: 0.2;
+      opacity: 0; 
     }
 
     &>.top {
-      transform: translate(0, 30px);
+      y: 45px;
       rotate: 45deg;
     }
 
     &>.bottom {
-      transform: translate(0, -30px);
+      y: 45px;
       rotate: -45deg;
     }
   }
