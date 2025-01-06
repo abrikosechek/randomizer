@@ -28,7 +28,9 @@
       <div class="card-results__header">
         <h2 class="card__title">
           Results
-          <span class="card__title__description">(avg: {{ generatedListAverage }})</span>
+          <span v-if="generatedList.length > 1" class="card__title__description">
+            (avg: {{ generatedListAverage }})
+          </span>
         </h2>
 
         <button class="card-results__header__button" @click="copyResults">
