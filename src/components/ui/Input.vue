@@ -73,12 +73,12 @@ $transition-duration: 200ms;
     border-radius: 5px;
 
     &__placeholder {
+      will-change: transform;
       position: absolute;
       left: 6px;
-      top: 50%;
       z-index: 1;
-      transform: translateY(-50%);
-      padding: 0 2px;
+      transform-origin: left;
+      transform: translate(0, 50%) scale(1);
       color: #ffffffec;
       font-size: 15px;
       line-height: 1em;
@@ -98,6 +98,7 @@ $transition-duration: 200ms;
       height: unset;
       padding: 0 6px;
       background: transparent;
+      backface-visibility: hidden;
       border: 0px;
       outline: 0px;
       font-weight: 600;
@@ -125,10 +126,7 @@ $transition-duration: 200ms;
       &__container {
         &__placeholder {
           color: #ffffffd2;
-          top: 1px;
-          transform: translateY(0);
-          font-size: 11px;
-          font-weight: 300;
+          transform: translate(0, 0) scale(0.85);
         }
       }
     }
