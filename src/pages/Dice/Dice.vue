@@ -1,5 +1,9 @@
 <template>
   <div class="page">
+    <h1>
+      Dice roller
+    </h1>
+
     <div ref="cardComponent" id="card" class="card container-glass">
       <canvas ref="canvasComponent" />
     </div>
@@ -247,7 +251,6 @@ const resetScene = () => {
 .page {
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
   width: 100%;
   max-width: 350px;
@@ -257,6 +260,7 @@ const resetScene = () => {
     display: flex;
     align-items: center;
     gap: 8px;
+    margin: 0 auto;
   }
 }
 
